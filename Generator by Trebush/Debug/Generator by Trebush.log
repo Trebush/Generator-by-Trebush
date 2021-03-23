@@ -1,0 +1,7 @@
+﻿  Generator by Trebush.cpp
+C:\Users\abc\source\repos\Generator by Trebush\Generator by Trebush\Generator by Trebush.cpp(54): warning C4715: "loginNumbers”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\abc\source\repos\Generator by Trebush\Generator by Trebush\Generator by Trebush.cpp(65): warning C4715: "passwordNumbers”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\abc\source\repos\Generator by Trebush\Generator by Trebush\Generator by Trebush.cpp(76): warning C4715: "loginSmallCharacters”: niewszystkie ścieżki kodu zwracają wartość
+C:\Users\abc\source\repos\Generator by Trebush\Generator by Trebush\Generator by Trebush.cpp(87): warning C4715: "passwordSmallCharacters”: niewszystkie ścieżki kodu zwracają wartość
+  LINK : nie znaleziono elementu C:\Users\abc\source\repos\Generator by Trebush\Debug\Generator by Trebush.exe ani nie został on skompilowany podczas ostatniego konsolidowania przyrostowego; zostanie wykonana pełna konsolidacja
+  Generator by Trebush.vcxproj -> C:\Users\abc\source\repos\Generator by Trebush\Debug\Generator by Trebush.exe
