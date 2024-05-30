@@ -1,3 +1,5 @@
+import encryption.Encryption;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,6 +65,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Encryption encryption = new Encryption();
+        System.out.println(encryption.test());
         int whatDo = 0;
         int lenght = 0;
         whatGenerator(whatDo, lenght, scanner);
