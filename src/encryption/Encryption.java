@@ -1,7 +1,9 @@
 package encryption;
 
 public class Encryption {
+    private String test;
     public String test(){
-        return "test";
+        this.test = "test";
+        return test;
     }
 }
