@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +17,7 @@ public class Main {
 
     static void whatGenerator(int whatDo, int lenght, Scanner scanner) {
         do {
+            start();
             whatDo = scanner.nextInt();
             switch (whatDo) {
                 case 0:
@@ -59,8 +63,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        start();
         int whatDo = 0;
         int lenght = 0;
         whatGenerator(whatDo, lenght, scanner);
