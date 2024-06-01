@@ -1,4 +1,5 @@
 import encryption.Encryption;
+import password_strength.Password_strength;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -72,6 +73,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in); // Create Scanner object to read input
         Encryption encryption = new Encryption(); // Create Encryption object
         System.out.println(encryption.test()); // Test encryption (example usage)
+        Password_strength password_strength = new Password_strength();
+        System.out.println(password_strength.test1());
         int whatDo = 0;
         int length = 0;
         whatGenerator(whatDo, length, scanner); // Start the generator process
