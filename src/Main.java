@@ -17,11 +17,12 @@ public class Main {
         System.out.println("1 \t - \t password generator");
         System.out.println("2 \t - \t login generator");
         System.out.println("3 \t - \t login and password generator");
+        System.out.println("4 \t - \t check your password strength");
         System.out.println("0 \t - \t exit");
     }
 
     // Method to handle user's choice and generate the required login/password
-    static void whatGenerator(int whatDo, int length, Scanner scanner) {
+    static void whatGenerator(int whatDo, int length, Scanner scanner, Password_strength password_strength) {
         do {
             start(); // Display menu
             whatDo = scanner.nextInt(); // Read user's choice
@@ -51,6 +52,11 @@ public class Main {
                     System.out.print("Your password is ");
                     System.out.println(generator(length));
                     break;
+                case 4:
+                    System.out.println("Enter your password what you want to check");
+                    String password = scanner.next();
+                    System.out.println(Password_strength.printStrongNess(password));
+                    break;
                 default:
                     System.out.println("Wrong number");
                     break;
@@ -74,9 +80,8 @@ public class Main {
         Encryption encryption = new Encryption(); // Create Encryption object
         System.out.println(encryption.test()); // Test encryption (example usage)
         Password_strength password_strength = new Password_strength();
-        System.out.println(password_strength.printStrongNess("test"));
         int whatDo = 0;
         int length = 0;
-        whatGenerator(whatDo, length, scanner); // Start the generator process
+        whatGenerator(whatDo, length, scanner,password_strength); // Start the generator process
     }
 }
