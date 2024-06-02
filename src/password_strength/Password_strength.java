@@ -9,11 +9,9 @@ public class Password_strength {
     public static String printStrongNess(String password) {
         // Checking lower alphabet in string
         int n = password.length();
-        boolean hasLower = false, hasUpper = false,
-                hasDigit = false, specialChar = false;
+        boolean hasLower = false, hasUpper = false, hasDigit = false, specialChar = false;
         Set<Character> set = new HashSet<Character>(
-                Arrays.asList('!', '@', '#', '$', '%', '^', '&',
-                        '*', '(', ')', '-', '+'));
+                Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
         for (char i : password.toCharArray()) {
             if (Character.isLowerCase(i))
                 hasLower = true;
