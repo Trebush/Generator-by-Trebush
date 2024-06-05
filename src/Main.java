@@ -78,6 +78,7 @@ public class Main {
 
     static boolean save(){
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Do you want save? Y/N: ");
         String yesOrNo = scanner.next();
         yesOrNo = yesOrNo.toUpperCase();
         switch (yesOrNo){
@@ -103,7 +104,7 @@ public class Main {
     // Main method to start the application
     public static void main(String[] args) {
         Password_strength password_strength = new Password_strength();
-        saveTofile();
+        save();
         int whatDo = 0;
         int length = 0;
         whatGenerator(whatDo, length, password_strength); // Start the generator process
