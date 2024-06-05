@@ -22,7 +22,8 @@ public class Main {
     }
 
     // Method to handle user's choice and generate the required login/password
-    static void whatGenerator(int whatDo, int length, Scanner scanner, Password_strength password_strength) {
+    static void whatGenerator(int whatDo, int length, Password_strength password_strength) {
+        Scanner scanner = new Scanner(System.in);
         do {
             start(); // Display menu
             whatDo = scanner.nextInt(); // Read user's choice
@@ -74,13 +75,14 @@ public class Main {
         return characters;
     }
 
-    static boolean save(Scanner scanner){
+    static boolean save(){
+        Scanner scanner = new Scanner(System.in);
         String yesOrNo = scanner.next();
-        yesOrNo.toUpperCase();
+        yesOrNo = yesOrNo.toUpperCase();
         switch (yesOrNo){
             case "YES", "Y" -> {return true;}
             case "NO", "N" -> {return false;}
-            default -> {System.out.println("Wrong, try again!"); return save(scanner);}
+            default -> {System.out.println("Wrong, try again!"); return save();}
         }
     }
     void saveTofile() {
@@ -92,9 +94,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Create Scanner object to read input
         Password_strength password_strength = new Password_strength();
-        System.out.println(save(scanner));
+        System.out.println(save());
         int whatDo = 0;
         int length = 0;
-        whatGenerator(whatDo, length, scanner, password_strength); // Start the generator process
+        whatGenerator(whatDo, length, password_strength); // Start the generator process
     }
 }
