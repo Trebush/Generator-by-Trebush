@@ -104,7 +104,7 @@ public class Main {
     // Main method to start the application
     public static void main(String[] args) {
         Password_strength password_strength = new Password_strength();
-        save();
+        saveTofile();
         int whatDo = 0;
         int length = 0;
         whatGenerator(whatDo, length, password_strength); // Start the generator process
