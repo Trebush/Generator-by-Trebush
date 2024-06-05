@@ -78,9 +78,8 @@ public class Main {
         yesOrNo.toUpperCase();
         if((yesOrNo == "YES")||(yesOrNo == "Y")){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
     void saveTofile() {
 
