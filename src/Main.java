@@ -74,14 +74,17 @@ public class Main {
         return characters;
     }
 
-    boolean save(String yesOrNo){
+    static boolean save(Scanner scanner){
+        String yesOrNo = scanner.next();
         yesOrNo.toUpperCase();
-        if((yesOrNo == "YES")||(yesOrNo == "Y")){
-            return true;
+        switch (yesOrNo){
+            case "YES", "Y" -> {return true;}
+            case "NO", "N" -> {return false;}
+            default -> {System.out.println("Wrong, try again!"); return save(scanner);}
         }
-        return false;
     }
     void saveTofile() {
+        String n = null;
 
     }
 
@@ -89,7 +92,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Create Scanner object to read input
         Password_strength password_strength = new Password_strength();
-
+        System.out.println(save(scanner));
         int whatDo = 0;
         int length = 0;
         whatGenerator(whatDo, length, scanner, password_strength); // Start the generator process
