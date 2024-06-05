@@ -1,3 +1,4 @@
+import com.sun.source.doctree.EscapeTree;
 import encryption.Encryption;
 import password_strength.Password_strength;
 
@@ -85,16 +86,24 @@ public class Main {
             default -> {System.out.println("Wrong, try again!"); return save();}
         }
     }
-    void saveTofile() {
-        String n = null;
-
+    static void saveTofile() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("File name: ");
+        String file = scanner.next();
+        try{
+            FileWriter fileWriter = new FileWriter(file,true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println("test");
+            fileWriter.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     // Main method to start the application
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // Create Scanner object to read input
         Password_strength password_strength = new Password_strength();
-        System.out.println(save());
+        saveTofile();
         int whatDo = 0;
         int length = 0;
         whatGenerator(whatDo, length, password_strength); // Start the generator process
