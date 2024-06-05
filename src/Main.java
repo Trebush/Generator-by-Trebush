@@ -53,7 +53,7 @@ public class Main {
                     System.out.println(generator(length));
                     break;
                 case 4:
-                    System.out.println("Enter your password what you want to check");
+                    System.out.println("Enter your password that you want to check");
                     String password = scanner.next();
                     System.out.println(Password_strength.printStrongNess(password));
                     break;
@@ -74,14 +74,25 @@ public class Main {
         return characters;
     }
 
+    boolean save(String yesOrNo){
+        yesOrNo.toUpperCase();
+        if((yesOrNo == "YES")||(yesOrNo == "Y")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    void saveTofile() {
+
+    }
+
     // Main method to start the application
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Create Scanner object to read input
-        Encryption encryption = new Encryption(); // Create Encryption object
-        System.out.println(encryption.test()); // Test encryption (example usage)
         Password_strength password_strength = new Password_strength();
+
         int whatDo = 0;
         int length = 0;
-        whatGenerator(whatDo, length, scanner,password_strength); // Start the generator process
+        whatGenerator(whatDo, length, scanner, password_strength); // Start the generator process
     }
 }
