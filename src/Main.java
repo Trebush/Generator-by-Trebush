@@ -4,6 +4,7 @@ import password_strength.Password_strength;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
@@ -94,7 +95,7 @@ public class Main {
         try{
             FileWriter fileWriter = new FileWriter(file,true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println("test");
+            printWriter.println("Maybe leter");
             fileWriter.close();
         }catch (Exception e){
             System.out.println(e);
