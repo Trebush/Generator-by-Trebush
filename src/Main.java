@@ -1,11 +1,12 @@
-import com.sun.source.doctree.EscapeTree;
-import encryption.Encryption;
-import password_strength.Password_strength;
+
+import encryption.*;
+import password_strength.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -24,8 +25,13 @@ public class Main {
     }
 
     // Method to handle user's choice and generate the required login/password
-    static void whatGenerator(int whatDo, int length, Password_strength password_strength) {
+    static void whatGenerator() {
         Scanner scanner = new Scanner(System.in);
+        Password_strength password_strength = new Password_strength();
+        String generator;
+        int test;
+        int whatDo = 0;
+        int length = 0;
         do {
             start(); // Display menu
             whatDo = scanner.nextInt(); // Read user's choice
@@ -37,7 +43,8 @@ public class Main {
                     System.out.println("How length do you need in password?");
                     length = scanner.nextInt();
                     System.out.print("Your password is ");
-                    System.out.println(generator(length));
+                    generator = new String(generator(length));
+                    System.out.println(generator);
                     break;
                 case 2:
                     System.out.println("How length do you need in login?");
@@ -77,37 +84,43 @@ public class Main {
         return characters;
     }
 
-    static boolean save(){
+    static boolean save() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Do you want save? Y/N: ");
         String yesOrNo = scanner.next();
         yesOrNo = yesOrNo.toUpperCase();
-        switch (yesOrNo){
-            case "YES", "Y" -> {return true;}
-            case "NO", "N" -> {return false;}
-            default -> {System.out.println("Wrong, try again!"); return save();}
+        switch (yesOrNo) {
+            case "YES", "Y" -> {
+                return true;
+            }
+            case "NO", "N" -> {
+                return false;
+            }
+            default -> {
+                System.out.println("Wrong, try again!");
+                return save();
+            }
         }
     }
+
     static void saveTofile() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("File name: ");
         String file = scanner.next();
-        try{
-            FileWriter fileWriter = new FileWriter(file,true);
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.println("Maybe leter");
             fileWriter.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     // Main method to start the application
     public static void main(String[] args) {
-        Password_strength password_strength = new Password_strength();
-        saveTofile();
         int whatDo = 0;
         int length = 0;
-        whatGenerator(whatDo, length, password_strength); // Start the generator process
+        whatGenerator(); // Start the generator process
     }
 }
