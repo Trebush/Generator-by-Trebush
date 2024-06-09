@@ -50,17 +50,20 @@ public class Main {
                     System.out.println("How length do you need in login?");
                     length = scanner.nextInt();
                     System.out.print("Your login is ");
-                    System.out.println(generator(length));
+                    generator = new String(generator(length));
+                    System.out.println(generator);
                     break;
                 case 3:
                     System.out.println("How length do you need in login?");
                     length = scanner.nextInt();
                     System.out.print("Your login is ");
-                    System.out.println(generator(length));
+                    generator = new String(generator(length));
+                    System.out.println(generator);
                     System.out.println("How length do you need in password?");
                     length = scanner.nextInt();
                     System.out.print("Your password is ");
-                    System.out.println(generator(length));
+                    generator = new String(generator(length));
+                    System.out.println(generator);
                     break;
                 case 4:
                     System.out.println("Enter your password that you want to check");
