@@ -122,6 +122,7 @@ public class Main {
 
     // Main method to start the application
     public static void main(String[] args) {
+        int test;
         int whatDo = 0;
         int length = 0;
         whatGenerator(); // Start the generator process
