@@ -1,130 +1,114 @@
+import password_strength.Password_strength;
 
-import encryption.*;
-import password_strength.*;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
-
 public class Main {
-    // Array containing ASCII values for special characters, digits, and letters
-    static int[] ascii = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125,};
+    static int[] ascii = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125};
+    private static password_strength.Password_strength Password_strength;
 
-    // Method to display the menu options
-    static void start() {
-        System.out.println("\tGenerator by Trebush");
-        System.out.println("1 \t - \t password generator");
-        System.out.println("2 \t - \t login generator");
-        System.out.println("3 \t - \t login and password generator");
-        System.out.println("4 \t - \t check your password strength");
-        System.out.println("0 \t - \t exit");
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(Main::createAndShowGUI);
     }
 
-    // Method to handle user's choice and generate the required login/password
-    static void whatGenerator() {
-        Scanner scanner = new Scanner(System.in);
-        Password_strength password_strength = new Password_strength();
-        String generatorL, generatorP, website;
-        int test;
-        int whatDo = 0;
-        int length = 0;
-        do {
-            start(); // Display menu
-            whatDo = scanner.nextInt(); // Read user's choice
-            switch (whatDo) {
-                case 0:
-                    System.out.println("Thanks for using ~ Trebush");
-                    break;
-                case 1:
-                    System.out.println("How length do you need in password?");
-                    length = scanner.nextInt();
-                    System.out.print("Your password is ");
-                    generatorP = new String(generator(length));
-                    System.out.println(generatorP);
-                    break;
-                case 2:
-                    System.out.println("How length do you need in login?");
-                    length = scanner.nextInt();
-                    System.out.print("Your login is ");
-                    generatorL = new String(generator(length));
-                    System.out.println(generatorL);
-                    break;
-                case 3:
-                    System.out.println("How length do you need in login?");
-                    length = scanner.nextInt();
-                    System.out.print("Your login is ");
-                    generatorL = new String(generator(length));
-                    System.out.println(generatorL);
-                    System.out.println("How length do you need in password?");
-                    length = scanner.nextInt();
-                    System.out.print("Your password is ");
-                    generatorP = new String(generator(length));
-                    System.out.println(generatorP);
-                    break;
-                case 4:
-                    System.out.println("Enter your password that you want to check");
-                    String password = scanner.next();
-                    System.out.println(Password_strength.printStrongNess(password));
-                    break;
-                default:
-                    System.out.println("Wrong number");
-                    break;
-            }
-        } while (whatDo != 0); // Repeat until user chooses to exit
+    private static void createAndShowGUI() {
+        JFrame frame = new JFrame("Generator by Trebush");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 500);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(6, 1));
+
+        JButton passwordButton = new JButton("Password Generator");
+        JButton loginButton = new JButton("Login Generator");
+        JButton loginPasswordButton = new JButton("Login and Password Generator");
+        JButton checkStrengthButton = new JButton("Check Password Strength");
+        JButton showLoginOrPassword = new JButton("Show Login or Password");
+        JButton exitButton = new JButton("Exit");
+
+        panel.add(passwordButton);
+        panel.add(loginButton);
+        panel.add(loginPasswordButton);
+        panel.add(checkStrengthButton);
+        panel.add(showLoginOrPassword);
+        panel.add(exitButton);
+
+        frame.getContentPane().add(panel);
+
+        passwordButton.addActionListener(e -> generatePassword(frame));
+        loginButton.addActionListener(e -> generateLogin(frame));
+        loginPasswordButton.addActionListener(e -> generateLoginAndPassword(frame));
+        checkStrengthButton.addActionListener(e -> checkPasswordStrength(frame));
+        showLoginOrPassword.addActionListener(e -> showLoginOrPassword(frame));
+        exitButton.addActionListener(e -> System.exit(0));
+
+        frame.setVisible(true);
     }
 
-    // Method to generate a random string of specified length
-    static char[] generator(int length) {
+    private static void generatePassword(JFrame frame) {
+        String lengthStr = JOptionPane.showInputDialog(frame, "Enter password length:");
+        int length = Integer.parseInt(lengthStr);
+        String password = new String(generator(length));
+        int save = JOptionPane.showConfirmDialog(frame, "Do you want to save the password?");
+        if (save == JOptionPane.YES_OPTION) {
+            saveToFile(frame, password);
+        }
+        JOptionPane.showMessageDialog(frame, "Generated Password: " + password);
+    }
+
+    private static void generateLogin(JFrame frame) {
+        String lengthStr = JOptionPane.showInputDialog(frame, "Enter login length:");
+        int length = Integer.parseInt(lengthStr);
+        String login = new String(generator(length));
+        JOptionPane.showMessageDialog(frame, "Generated Login: " + login);
+    }
+
+    private static void generateLoginAndPassword(JFrame frame) {
+        String loginLengthStr = JOptionPane.showInputDialog(frame, "Enter login length:");
+        int loginLength = Integer.parseInt(loginLengthStr);
+        String login = new String(generator(loginLength));
+        String passwordLengthStr = JOptionPane.showInputDialog(frame, "Enter password length:");
+        int passwordLength = Integer.parseInt(passwordLengthStr);
+        String password = new String(generator(passwordLength));
+        int save = JOptionPane.showConfirmDialog(frame, "Do you want to save the login and password?");
+        if (save == JOptionPane.YES_OPTION) {
+            saveToFile(frame, "Login: " + login + "\nPassword: " + password);
+        }
+        JOptionPane.showMessageDialog(frame, "Generated Login: " + login + "\nGenerated Password: " + password);
+    }
+
+    private static void checkPasswordStrength(JFrame frame) {
+        String password = JOptionPane.showInputDialog(frame, "Enter password to check strength:");
+        // Assuming Password_strength class exists and has a printStrongNess method
+        String strength = Password_strength.printStrongNess(password);
+        JOptionPane.showMessageDialog(frame, "Password Strength: " + strength);
+    }
+    private static void showLoginOrPassword(JFrame frame){
+        String website = JOptionPane.showInputDialog(frame, "Website?: ");
+
+    }
+
+    private static char[] generator(int length) {
         Random random = new Random();
         char[] characters = new char[length];
         for (int i = 0; i < length; i++) {
-            characters[i] = (char) ascii[random.nextInt(93)]; // Randomly pick a character from ascii array
+            characters[i] = (char) ascii[random.nextInt(ascii.length)];
         }
         return characters;
     }
 
-    static boolean save() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want save? Y/N: ");
-        String yesOrNo = scanner.next();
-        yesOrNo = yesOrNo.toUpperCase();
-        switch (yesOrNo) {
-            case "YES", "Y" -> {
-                return true;
-            }
-            case "NO", "N" -> {
-                return false;
-            }
-            default -> {
-                System.out.println("Wrong, try again!");
-                return save();
-            }
-        }
-    }
-
-    static void saveTofile() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("File name: ");
-        String file = scanner.next();
-        try {
-            FileWriter fileWriter = new FileWriter(file, true);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println("Maybe leter");
-            fileWriter.close();
+    private static void saveToFile(JFrame frame, String content) {
+        String fileName = JOptionPane.showInputDialog(frame, "Enter file name:");
+        try (FileWriter fileWriter = new FileWriter(fileName, true);
+             PrintWriter printWriter = new PrintWriter(fileWriter)) {
+            printWriter.println(content);
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(frame, "Error saving to file: " + e.getMessage());
         }
-    }
-
-    // Main method to start the application
-    public static void main(String[] args) {
-        int test;
-        int whatDo = 0;
-        int length = 0;
-        whatGenerator(); // Start the generator process
     }
 }
