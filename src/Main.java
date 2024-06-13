@@ -57,13 +57,12 @@ public class Main {
         String password = new String(generator(length));
         int save = JOptionPane.showConfirmDialog(frame, "Do you want to save the password?");
         if (save == JOptionPane.YES_OPTION) {
-            saveToFile(frame, password);
+            saveToFile(frame, "Website: " + website +"\nGenerated Password: " + password);
         }
         JOptionPane.showMessageDialog(frame, "Generated Password: " + password);
     }
 
     private static void generateLogin(JFrame frame) {
-        String website = JOptionPane.showInputDialog(frame, "Enter website: ");
         String lengthStr = JOptionPane.showInputDialog(frame, "Enter login length:");
         int length = Integer.parseInt(lengthStr);
         String login = new String(generator(length));
@@ -82,7 +81,7 @@ public class Main {
         if (save == JOptionPane.YES_OPTION) {
             saveToFile(frame, "Login: " + login + "\nPassword: " + password);
         }
-        JOptionPane.showMessageDialog(frame, "Generated Login: " + login + "\nGenerated Password: " + password);
+        JOptionPane.showMessageDialog(frame, "Website: " + website +"\nGenerated Login: " + login + "\nGenerated Password: " + password);
     }
 
     private static void checkPasswordStrength(JFrame frame) {
