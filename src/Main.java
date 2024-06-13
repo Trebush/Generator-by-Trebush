@@ -28,7 +28,7 @@ public class Main {
     static void whatGenerator() {
         Scanner scanner = new Scanner(System.in);
         Password_strength password_strength = new Password_strength();
-        String generator;
+        String generatorL, generatorP, website;
         int test;
         int whatDo = 0;
         int length = 0;
@@ -43,27 +43,27 @@ public class Main {
                     System.out.println("How length do you need in password?");
                     length = scanner.nextInt();
                     System.out.print("Your password is ");
-                    generator = new String(generator(length));
-                    System.out.println(generator);
+                    generatorP = new String(generator(length));
+                    System.out.println(generatorP);
                     break;
                 case 2:
                     System.out.println("How length do you need in login?");
                     length = scanner.nextInt();
                     System.out.print("Your login is ");
-                    generator = new String(generator(length));
-                    System.out.println(generator);
+                    generatorL = new String(generator(length));
+                    System.out.println(generatorL);
                     break;
                 case 3:
                     System.out.println("How length do you need in login?");
                     length = scanner.nextInt();
                     System.out.print("Your login is ");
-                    generator = new String(generator(length));
-                    System.out.println(generator);
+                    generatorL = new String(generator(length));
+                    System.out.println(generatorL);
                     System.out.println("How length do you need in password?");
                     length = scanner.nextInt();
                     System.out.print("Your password is ");
-                    generator = new String(generator(length));
-                    System.out.println(generator);
+                    generatorP = new String(generator(length));
+                    System.out.println(generatorP);
                     break;
                 case 4:
                     System.out.println("Enter your password that you want to check");
