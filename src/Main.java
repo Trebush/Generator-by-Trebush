@@ -51,6 +51,7 @@ public class Main {
     }
 
     private static void generatePassword(JFrame frame) {
+        String website = JOptionPane.showInputDialog(frame, "Enter website: ");
         String lengthStr = JOptionPane.showInputDialog(frame, "Enter password length:");
         int length = Integer.parseInt(lengthStr);
         String password = new String(generator(length));
@@ -62,6 +63,7 @@ public class Main {
     }
 
     private static void generateLogin(JFrame frame) {
+        String website = JOptionPane.showInputDialog(frame, "Enter website: ");
         String lengthStr = JOptionPane.showInputDialog(frame, "Enter login length:");
         int length = Integer.parseInt(lengthStr);
         String login = new String(generator(length));
@@ -69,6 +71,7 @@ public class Main {
     }
 
     private static void generateLoginAndPassword(JFrame frame) {
+        String website = JOptionPane.showInputDialog(frame, "Enter website: ");
         String loginLengthStr = JOptionPane.showInputDialog(frame, "Enter login length:");
         int loginLength = Integer.parseInt(loginLengthStr);
         String login = new String(generator(loginLength));
