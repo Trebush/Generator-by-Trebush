@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Random;
 
 public class Main {
@@ -60,7 +57,7 @@ public class Main {
         String password = new String(generator(length));
         int save = JOptionPane.showConfirmDialog(frame, "Do you want to save the password?");
         if (save == JOptionPane.YES_OPTION) {
-            saveToFile(frame, "Website: " + website + "\nGenerated Password: " + password);
+            saveToFile(frame, "\n\nWebsite: " + website + "\nGenerated Password: " + password);
         }
         JOptionPane.showMessageDialog(frame, "Generated Password: " + password);
     }
@@ -82,7 +79,7 @@ public class Main {
         String password = new String(generator(passwordLength));
         int save = JOptionPane.showConfirmDialog(frame, "Do you want to save the login and password?");
         if (save == JOptionPane.YES_OPTION) {
-            saveToFile(frame, "Login: " + login + "\nPassword: " + password);
+            saveToFile(frame, "\n\nWebsite: " + website + "\nLogin: " + login + "\nPassword: " + password);
         }
         JOptionPane.showMessageDialog(frame, "Website: " + website + "\nGenerated Login: " + login + "\nGenerated Password: " + password);
     }
@@ -95,39 +92,35 @@ public class Main {
     }
 
     private static void showLoginOrPassword(JFrame frame) {
-        String website = JOptionPane.showInputDialog(frame, "Website?: ");
         String filePath = "file.txt";
         StringBuilder content = new StringBuilder();
+
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            boolean startReading = false;
 
             while ((line = reader.readLine()) != null) {
-                if (line.contains(website)) {
-                    startReading = true;
-                }
-
-                if (startReading) {
-                    content.append(line).append("\n");
-                    if (line.contains("website")) {
-                        break;
-                    }
-                }
+                content.append(line).append("\n");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(frame, "Error reading from file: " + e.getMessage());
         }
+
+        if (content.length() == 0) {
+            content.append("File is empty or not found");
+        }
+
         JTextArea textArea = new JTextArea(content.toString());
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setEditable(false);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new java.awt.Dimension(400, 300));
+        scrollPane.setPreferredSize(new Dimension(400, 300));
 
-        JOptionPane.showMessageDialog(frame, scrollPane, "Odczyt z pliku", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame, scrollPane, "Your login and password", JOptionPane.INFORMATION_MESSAGE);
     }
-        private static char[] generator ( int length){
+
+    private static char[] generator ( int length){
             Random random = new Random();
             char[] characters = new char[length];
             for (int i = 0; i < length; i++) {
