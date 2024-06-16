@@ -12,7 +12,7 @@ public class Main {
     private static password_strength.Password_strength Password_strength;
 
     public static void main(String[] args) {
-
+        int test;
         SwingUtilities.invokeLater(Main::createAndShowGUI);
     }
 
