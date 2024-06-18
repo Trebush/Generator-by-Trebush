@@ -92,7 +92,7 @@ public class Main {
     }
 
     private static void showLoginOrPassword(JFrame frame) {
-        
+        int test;
         String filePath = "file.txt";
         StringBuilder content = new StringBuilder();
 
