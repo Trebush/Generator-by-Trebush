@@ -1,5 +1,0 @@
-
-
-Website: facebook
-Login: %:YYc
-Password: |y`k1,g
